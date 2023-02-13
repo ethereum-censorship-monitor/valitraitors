@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Beaver Build",
+    "fee_recipients": ["0x95222290DD7278Aa3Ddd389Cc1E1d165CC4BAfe5"]
+  },
+  {
+    "name": "Flashbots",
+    "fee_recipients": ["0xDAFEA492D9c6733ae3d56b7Ed1ADB60692c98Bc5"]
+  },
+  {
+    "name": "Builder0x69",
+    "fee_recipients": ["0x690B9A9E9aa1C9dB991C7721a92d351Db4FaC990"]
+  },
+  {
+    "name": "Blocknative",
+    "fee_recipients": ["0xBaF6dC2E647aeb6F510f9e318856A1BCd66C5e19"]
+  },
+  {
+    "name": "Bloxroute",
+    "fee_recipients": [
+      "0xF2f5C73fa04406b1995e397B55c24aB1f3eA726C",
+      "0x199D5ED7F45F4eE35960cF22EAde2076e95B253F",
+      "0xf573d99385C05c23B24ed33De616ad16a43a0919"
+    ]
+  },
+  {
+    "name": "Eth Builder",
+    "fee_recipients": ["0xFeebabE6b0418eC13b30aAdF129F5DcDd4f70CeA"]
+  },
+  {
+    "name": "BuildAI",
+    "fee_recipients": ["0xbd3Afb0bB76683eCb4225F9DBc91f998713C3b01"]
+  },
+  {
+    "name": "Gambit Labs",
+    "fee_recipients": ["0xaC7EA48093B61f2E217b9d077d69D9d55CA1B106"]
+  },
+  {
+    "name": "Rsync",
+    "fee_recipients": ["0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326"]
+  },
+  {
+    "name": "Manta",
+    "fee_recipients": ["0x5F927395213ee6b95dE97bDdCb1b2B1C0F16844F"]
+  },
+  {
+    "name": "Lightspeed",
+    "fee_recipients": ["0xd2090025857B9C7B24387741f120538E928A3a59"]
+  },
+  {
+    "name": "Payload",
+    "fee_recipients": ["0xCE0BaBc8398144Aa98D9210d595E3A9714910748"]
+  },
+  {
+    "name": "Mars",
+    "fee_recipients": ["0xEeEE8Db5fC7d505e99970945a9220Ab7992050E3"]
+  }
+]

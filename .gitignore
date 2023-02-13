@@ -1,0 +1,12 @@
+.venv
+
+data/txs.json
+data/blocks.json
+data/relays.json
+data/validator_pubkeys.json
+data/builder_leaderboard.json
+data/relay_leaderboard.json
+
+frontend/txs.json
+frontend/builder_leaderboard.json
+frontend/relay_leaderboard.json
