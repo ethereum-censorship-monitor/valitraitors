@@ -113,6 +113,7 @@ def fetch_blocks(config, t0, t1, last_blocks):
                 "block_number": int(exec["block_number"]),
                 "block_hash": exec["block_hash"],
                 "fee_recipient": exec["fee_recipient"],
+                "proposer_index": int(msg["proposer_index"]),
             }
         else:
             block = {
@@ -121,6 +122,7 @@ def fetch_blocks(config, t0, t1, last_blocks):
                 "block_number": None,
                 "block_hash": None,
                 "fee_recipient": None,
+                "proposer_index": None,
             }
         blocks_by_slot[slot] = block
     print("done")

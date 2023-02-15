@@ -4,7 +4,7 @@
 </script>
 
 <div class="mx-auto max-w-screen-sm">
-  <table class="table-fixed text-white mx-4 border-b border-white">
+  <table class="table-fixed text-white w-full mx-4 border-b border-white">
     {#if heads}
       <thead class="mb-4">
         <tr>

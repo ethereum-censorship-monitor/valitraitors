@@ -5,6 +5,10 @@ export async function load({ params }) {
   const txsBuffer = await fs.promises.readFile(txsPath);
   const txs = JSON.parse(txsBuffer);
 
+  const depositorLeaderboardPath = import.meta.env.VITE_DEPOSITOR_LEADERBOARD_PATH;
+  const depositorLeaderboardBuffer = await fs.promises.readFile(depositorLeaderboardPath);
+  const depositorLeaderboard = JSON.parse(depositorLeaderboardBuffer);
+
   const builderLeaderboardPath = import.meta.env.VITE_BUILDER_LEADERBOARD_PATH;
   const builderLeaderboardBuffer = await fs.promises.readFile(builderLeaderboardPath);
   const builderLeaderboard = JSON.parse(builderLeaderboardBuffer);
@@ -14,8 +18,10 @@ export async function load({ params }) {
   const relayLeaderboard = JSON.parse(relayLeaderboardBuffer);
 
   if (
+    txs.fetched_from != depositorLeaderboard.fetched_from ||
     txs.fetched_from != builderLeaderboard.fetched_from ||
     txs.fetched_from != relayLeaderboard.fetched_from ||
+    txs.fetched_to != depositorLeaderboard.fetched_to ||
     txs.fetched_to != builderLeaderboard.fetched_to ||
     txs.fetched_to != relayLeaderboard.fetched_to
   ) {
@@ -24,6 +30,7 @@ export async function load({ params }) {
 
   return {
     txs: txs,
+    depositorLeaderboard: depositorLeaderboard,
     builderLeaderboard: builderLeaderboard,
     relayLeaderboard: relayLeaderboard
   };

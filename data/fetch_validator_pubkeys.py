@@ -51,12 +51,12 @@ def write_pubkeys(config, pubkeys):
 def fetch_pubkeys(config, old_pubkeys):
     slot = fetch_current_slot(config)
     if old_pubkeys is not None:
-        if slot <= old_pubkeys["fetched_at_slot"]:
+        if slot <= int(old_pubkeys["fetched_at_slot"]):
             raise ValueError("old pubkeys have been fetched in the future")
         old_pubkeys = old_pubkeys["pubkeys"]
     else:
         old_pubkeys = {}
-    next_validator_index = max(old_pubkeys.keys(), default=0)
+    next_validator_index = max(map(int, old_pubkeys.keys()), default=0)
     new_pubkeys = fetch_pubkeys_from(config, slot, next_validator_index)
     return {
         "fetched_at_slot": slot,
@@ -72,7 +72,7 @@ def fetch_current_slot(config):
     res = requests.get(url)
     res.raise_for_status()
     data = res.json()
-    return data["data"]["header"]["message"]["slot"]
+    return int(data["data"]["header"]["message"]["slot"])
 
 
 def fetch_pubkeys_from(config, slot, validator_index):
