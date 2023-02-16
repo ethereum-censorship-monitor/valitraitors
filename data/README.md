@@ -3,6 +3,7 @@
 This directory contains a couple of scripts that collects data and aggregates
 them to be displayed by a frontend. The scripts are:
 
+- `fetch_all.py`: Runs all of the things below.
 - `fetch_txs.py`: Fetches censored txs from the monitor in a certain time
   interval, e.g. the past 7 days.
 - `fetch_blocks.py`: Fetches the blocks corresponding to the transactions

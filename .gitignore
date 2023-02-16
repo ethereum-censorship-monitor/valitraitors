@@ -1,5 +1,6 @@
 .venv
 
+data/__pycache__/
 data/.env
 data/txs.json
 data/blocks.json
