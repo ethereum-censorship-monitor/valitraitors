@@ -21,8 +21,12 @@
 
 <Heading text="Recently Censored Transactions" />
 <div>
-  <Plot {t0} {t1} txs={txs.txs} />
-  <p class="text-white text-center text-sm">
-    Only transactions with {min_num_misses} or more misses are shown.
-  </p>
+  {#if txs}
+    <Plot {t0} {t1} txs={txs.txs} />
+    <p class="text-white text-center text-sm">
+      Only transactions with {min_num_misses} or more misses are shown.
+    </p>
+  {:else}
+    <p class="text-white text-center text-md">No data</p>
+  {/if}
 </div>

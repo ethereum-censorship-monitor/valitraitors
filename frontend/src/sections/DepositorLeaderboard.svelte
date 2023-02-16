@@ -7,12 +7,16 @@
 
   let rows = [];
   $: {
-    rows = data.depositor_leaderboard.map((r) => [
-      r.depositor,
-      formatPercentage(r.market_share),
-      r.num_misses,
-      r.weighted_num_misses.toFixed(1)
-    ]);
+    if (data) {
+      rows = data.depositor_leaderboard.map((r) => [
+        r.depositor,
+        formatPercentage(r.market_share),
+        r.num_misses,
+        r.weighted_num_misses.toFixed(1)
+      ]);
+    } else {
+      rows = [];
+    }
   }
 </script>
 
