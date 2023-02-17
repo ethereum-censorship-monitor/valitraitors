@@ -36,7 +36,7 @@ def main():
     relays = fetch_relays(
         blocks["blocks"],
         relay_apis,
-        old_relays,
+        old_relays["relays"] if old_relays is not None else {},
         blocks["fetched_from"],
         blocks["fetched_to"],
     )
@@ -62,59 +62,61 @@ def read_relay_apis(config):
 
 
 def fetch_relays(blocks, relay_apis, old_relays, fetched_from, fetched_to):
-    slots = [block["slot"] for block in blocks]
+    all_slots = [block["slot"] for block in blocks]
     relays = {}
-    for slot in slots:
-        if slot in (old_relays or []):
-            relays[slot] = old_relays[slot]
+    for slot in all_slots:
+        if str(slot) in old_relays:
+            relays[str(slot)] = old_relays[str(slot)]
+        else:
+            relays[str(slot)] = set()
 
-    slots_to_fetch = [slot for slot in slots if slot not in relays]
-    min_slot = min(slots_to_fetch)
-    max_slot = max(slots_to_fetch)
-
-    print(f"fetching slots for {len(relay_apis)} relays")
+    slots_to_fetch = [slot for slot in all_slots if str(slot) not in old_relays]
+    print(f"fetching {len(slots_to_fetch)} slots for {len(relay_apis)} relays")
     for api in relay_apis:
-        slots = fetch_slots_for_relay(api, min_slot, max_slot)
+        slots = fetch_slots_for_relay(api, slots_to_fetch)
         for slot in slots:
-            relays[slot] = api["name"]
-    print("done")
-
-    for slot in slots:
-        if slot not in relays:
-            relays[slot] = None
+            assert str(slot) in relays
+            relays[str(slot)].add(api["name"])
 
     return {
         "fetched_from": fetched_from,
         "fetched_to": fetched_to,
-        "relays": relays,
+        "relays": {s: sorted(rs) for s, rs in relays.items()},
     }
 
 
-def fetch_slots_for_relay(relay, min_slot, max_slot):
-    slots = []
-    cursor = max_slot
-    print(f'fetching slots by relay {relay["name"]} between {min_slot} and {max_slot}')
-    while True:
+def fetch_slots_for_relay(relay, slots_to_fetch):
+    all_slots_to_fetch = set(slots_to_fetch)
+    remaining_slots_to_fetch = set(slots_to_fetch)
+    fetched_slots = set()
+
+    print(f'fetching {len(all_slots_to_fetch)} slots for relay {relay["name"]}')
+    while len(remaining_slots_to_fetch) > 0:
         url_with_path = urllib.parse.urljoin(
             relay["url"], "/relay/v1/data/bidtraces/proposer_payload_delivered"
         )
         params = {
-            "cursor": cursor,
+            "cursor": max(remaining_slots_to_fetch),
         }
-        print(
-            f"requesting from slot {cursor} ({(max_slot - cursor) / (max_slot - min_slot) * 100:.1f}%)"
-        )
+        progress = 1 - (len(remaining_slots_to_fetch) / len(all_slots_to_fetch))
+        print(f"requesting from slot {params['cursor']} ({progress * 100:.1f}%)")
         res = requests.get(url_with_path, params=params)
         res.raise_for_status()
         data = res.json()
 
-        new_slots = [int(block["slot"]) for block in data]
-        slots.extend([slot for slot in new_slots if min_slot <= slot <= max_slot])
+        slots_by_relay = set(int(block["slot"]) for block in data)
+        slot_range = set(range(min(slots_by_relay), params["cursor"] + 1))
+        slots_not_by_relay = slot_range - slots_by_relay
 
-        if len(new_slots) == 0 or min(new_slots) <= min_slot:
+        remaining_slots_to_fetch -= slot_range
+        fetched_slots |= slots_by_relay
+
+        if len(slots_by_relay) == 0 and len(remaining_slots_to_fetch) > 0:
+            print(
+                "empty response from relay {relay['url']}, but some slots still missing"
+            )
             break
-        cursor = min(new_slots) - 1
-    return sorted(set(slots))
+    return sorted(fetched_slots & all_slots_to_fetch)
 
 
 def write_relays(config, relays):

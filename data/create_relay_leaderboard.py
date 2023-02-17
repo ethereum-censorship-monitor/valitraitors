@@ -66,8 +66,9 @@ def count_misses_by_relay(txs, relays):
     for tx in txs:
         for block in tx["misses"]:
             try:
-                relay = relays[str(block["slot"])]
-                counts[relay] = counts.get(relay, 0) + 1
+                rs = relays[str(block["slot"])]
+                for relay in rs:
+                    counts[relay] = counts.get(relay, 0) + 1 / len(rs)
             except KeyError:
                 pass
     return counts
@@ -75,8 +76,9 @@ def count_misses_by_relay(txs, relays):
 
 def compute_relay_market_shares(relays):
     counts = {}
-    for _, relay in relays.items():
-        counts[relay] = counts.get(relay, 0) + 1
+    for _, rs in relays.items():
+        for relay in rs:
+            counts[relay] = counts.get(relay, 0) + 1 / len(rs)
     return {relay: count / len(relays) for relay, count in counts.items()}
 
 
