@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { env } from '$env/dynamic/private';
 
 async function loadJsonAtPath(path) {
   if (!path) {
@@ -40,12 +41,10 @@ function checkFetchRange(dataItems) {
 }
 
 export async function load({ params }) {
-  const txs = await loadJsonAtPath(import.meta.env.VITE_TXS_PATH);
-  const depositorLeaderboard = await loadJsonAtPath(
-    import.meta.env.VITE_DEPOSITOR_LEADERBOARD_PATH
-  );
-  const builderLeaderboard = await loadJsonAtPath(import.meta.env.VITE_BUILDER_LEADERBOARD_PATH);
-  const relayLeaderboard = await loadJsonAtPath(import.meta.env.VITE_RELAY_LEADERBOARD_PATH);
+  const txs = await loadJsonAtPath(env.TXS_PATH);
+  const depositorLeaderboard = await loadJsonAtPath(env.DEPOSITOR_LEADERBOARD_PATH);
+  const builderLeaderboard = await loadJsonAtPath(env.BUILDER_LEADERBOARD_PATH);
+  const relayLeaderboard = await loadJsonAtPath(env.RELAY_LEADERBOARD_PATH);
 
   checkFetchRange([txs, depositorLeaderboard, builderLeaderboard, relayLeaderboard]);
 
