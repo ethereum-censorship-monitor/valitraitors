@@ -11,7 +11,7 @@
       rows = data.relay_leaderboard.map((r) => [
         { text: r.relay, sortValue: r.relay },
         { text: formatPercentage(r.market_share), sortValue: -r.market_share },
-        { text: r.num_misses, sortValue: -r.num_misses },
+        { text: r.num_misses.toFixed(0), sortValue: -r.num_misses },
         { text: r.weighted_num_misses.toFixed(1), sortValue: -r.weighted_num_misses }
       ]);
     } else {
