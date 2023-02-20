@@ -50,7 +50,7 @@
         <tr>
           {#each row as cell}
             <td class="text-center py-1">
-              {#if cell != 'Lido'}
+              {#if cell.text != 'Lido'}
                 {cell.text}
               {:else}
                 Lido <sup>1</sup>
