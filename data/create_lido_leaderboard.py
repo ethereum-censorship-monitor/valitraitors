@@ -187,7 +187,7 @@ def create_operator_leaderboard(
     return {
         "fetched_from": fetched_from,
         "fetched_to": fetched_to,
-        "depositor_leaderboard": leaderboard,
+        "lido_leaderboard": leaderboard,
     }
 
 
