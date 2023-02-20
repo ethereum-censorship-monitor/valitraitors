@@ -24,34 +24,18 @@ async function loadJsonAtPath(path) {
   return data;
 }
 
-function checkFetchRange(dataItems) {
-  const nonNullItems = dataItems.filter((d) => !!d);
-  if (nonNullItems.length === 0) {
-    return;
-  }
-  for (const d of nonNullItems.slice(1)) {
-    if (
-      d.fetched_from !== nonNullItems[0].fetched_from ||
-      d.fetched_to !== nonNullItems[0].fetched_to
-    ) {
-      console.error('fetched from mismatch in data files');
-      return;
-    }
-  }
-}
-
 export async function load({ params }) {
   const txs = await loadJsonAtPath(env.TXS_PATH);
   const depositorLeaderboard = await loadJsonAtPath(env.DEPOSITOR_LEADERBOARD_PATH);
   const builderLeaderboard = await loadJsonAtPath(env.BUILDER_LEADERBOARD_PATH);
   const relayLeaderboard = await loadJsonAtPath(env.RELAY_LEADERBOARD_PATH);
-
-  checkFetchRange([txs, depositorLeaderboard, builderLeaderboard, relayLeaderboard]);
+  const lidoLeaderboard = await loadJsonAtPath(env.LIDO_LEADERBOARD_PATH);
 
   return {
     txs: txs,
     depositorLeaderboard: depositorLeaderboard,
     builderLeaderboard: builderLeaderboard,
-    relayLeaderboard: relayLeaderboard
+    relayLeaderboard: relayLeaderboard,
+    lidoLeaderboard: lidoLeaderboard
   };
 }

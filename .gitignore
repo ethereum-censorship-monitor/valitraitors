@@ -16,3 +16,4 @@ frontend/txs.json
 frontend/depositor_leaderboard.json
 frontend/builder_leaderboard.json
 frontend/relay_leaderboard.json
+frontend/lido_leaderboard.json

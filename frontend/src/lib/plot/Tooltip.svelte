@@ -4,6 +4,9 @@
   export let x;
   export let y;
   export let marker;
+
+  $: minBlock = Math.min(...marker.blocks);
+  $: maxBlock = Math.max(...marker.blocks);
 </script>
 
 <div
@@ -11,8 +14,7 @@
   style="left: {x}px; top: {y}px; transform: translate(-50%, 0); max-width: 12rem"
 >
   <p class="text-sm">
-    Tx {formatHash(marker.txHash)} missed {marker.numMisses} times in blocks {marker.blocks
-      .map(formatNumber)
-      .join(', ')}
+    Tx {formatHash(marker.txHash)} missed {marker.numMisses} times in blocks
+    {formatNumber(minBlock)} to {formatNumber(maxBlock)}
   </p>
 </div>

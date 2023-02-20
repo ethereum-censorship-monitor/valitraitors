@@ -8,10 +8,10 @@
   let rows = [];
   $: {
     if (data) {
-      rows = data.builder_leaderboard.map((r) => [
-        { text: r.builder, sortValue: r.builder },
+      rows = data.lido_leaderboard.map((r) => [
+        { text: r.operator, sortValue: r.operator },
         { text: formatPercentage(r.market_share), sortValue: -r.market_share },
-        { text: r.num_misses, sortValue: -r.num_misses },
+        { text: r.num_misses.toFixed(0), sortValue: -r.num_misses },
         { text: r.weighted_num_misses.toFixed(1), sortValue: -r.weighted_num_misses }
       ]);
     } else {
@@ -20,16 +20,16 @@
   }
 </script>
 
-<Heading text="Builder Leaderboard" />
+<Heading text="Lido Node Operator Leaderboard" />
 
-<div class="mx-auto max-w-screen-sm">
+<div class="mx-auto max-w-screen-sm text-justify">
   <p class="text-white mx-4 mb-8">
-    Builders draft blocks for validators and choose directly which transactions to include and which
-    ones not to.
+    Lido is the biggest staking pool. They don't run validators themselves, but outsource this job
+    to a set of external entities. This table compares these node operators.
   </p>
 </div>
 <Table
-  heads={['Builder', 'Market Share', 'Misses', 'Weighted Misses']}
+  heads={['Operator', 'Market Share', 'Misses', 'Weighted Misses']}
   defaultSortColumn={2}
   {rows}
 />

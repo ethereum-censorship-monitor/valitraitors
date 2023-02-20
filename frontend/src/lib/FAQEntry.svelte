@@ -14,7 +14,9 @@
     </h3>
   </div>
   {#if !folded}
-    <div class="text-white mt-2 ml-5">
+    <div
+      class="text-white mt-2 ml-5 prose prose-a:text-cyan-500 prose-a:no-underline hover:prose-a:underline"
+    >
       <slot name="answer" />
     </div>
   {/if}

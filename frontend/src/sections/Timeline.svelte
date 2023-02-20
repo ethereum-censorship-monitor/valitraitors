@@ -23,9 +23,11 @@
 <div>
   {#if txs}
     <Plot {t0} {t1} txs={txs.txs} />
-    <p class="text-white text-center text-sm">
-      Only transactions with {min_num_misses} or more misses are shown.
-    </p>
+    <div class="mx-auto max-w-screen-sm">
+      <p class="text-white text-center text-sm mx-4 mb-8">
+        Only transactions with {min_num_misses} or more misses are shown. All times in UTC.
+      </p>
+    </div>
   {:else}
     <p class="text-white text-center text-md">No data</p>
   {/if}

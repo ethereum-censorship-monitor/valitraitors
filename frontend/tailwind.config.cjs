@@ -7,5 +7,5 @@ module.exports = {
       heading: ['sans-serif']
     }
   },
-  plugins: []
+  plugins: [require('@tailwindcss/typography')]
 };
