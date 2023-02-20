@@ -6,9 +6,11 @@ data/txs.json
 data/blocks.json
 data/relays.json
 data/validator_pubkeys.json
+data/lido_operator_pubkeys.json
 data/depositor_leaderboard_leaderboard.json
 data/builder_leaderboard.json
 data/relay_leaderboard.json
+data/lido_leaderboard.json
 
 frontend/txs.json
 frontend/depositor_leaderboard.json

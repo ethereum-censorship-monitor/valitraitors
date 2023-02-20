@@ -146,10 +146,10 @@ def compute_depositor_market_shares(blocks, validator_pubkeys, depositors):
 
 
 def create_depositor_leaderboard(
-    config, num_blocks_by_depositor, depositor_market_shares, fetched_from, fetched_to
+    config, misses_by_depositor, depositor_market_shares, fetched_from, fetched_to
 ):
     leaderboard_unordered = []
-    for depositor, count in num_blocks_by_depositor.items():
+    for depositor, count in misses_by_depositor.items():
         share = depositor_market_shares[depositor]
         if share >= config.MIN_DEPOSITOR_MARKET_SHARE:
             leaderboard_unordered.append(

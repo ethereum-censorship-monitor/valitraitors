@@ -2,9 +2,11 @@ import fetch_txs
 import fetch_blocks
 import fetch_relays
 import fetch_validator_pubkeys
+import fetch_lido
 import create_depositor_leaderboard
 import create_builder_leaderboard
 import create_relay_leaderboard
+import create_lido_leaderboard
 
 
 def main():
@@ -12,9 +14,11 @@ def main():
     fetch_blocks.main()
     fetch_relays.main()
     fetch_validator_pubkeys.main()
+    fetch_lido.main()
     create_depositor_leaderboard.main()
     create_builder_leaderboard.main()
     create_relay_leaderboard.main()
+    create_lido_leaderboard.main()
 
 
 if __name__ == "__main__":
