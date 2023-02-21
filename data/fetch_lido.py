@@ -159,8 +159,6 @@ def fetch_signing_key_added_logs(config, fetch_range):
         logs.extend(data["result"])
         progress = (to_block - fetch_range[0]) / num_blocks
         print(f"{progress * 100:.1f}% (got {len(logs)} logs so far)")
-        if len(logs) > 0:
-            break
     return logs
 
 
