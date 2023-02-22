@@ -77,6 +77,28 @@
       </div>
     </FAQEntry>
     <FAQEntry>
+      <span slot="question">How accurate is the data?</span>
+      <div slot="answer">
+        <p>
+          The mempool is by its nature subjective: Different nodes in the network see different
+          transactions. It's therefore possible that the monitor classifies a not-included
+          transaction as a miss, even though the block producer hasn't seen it. To account for this,
+          we give transactions ample time to propagate before considering them as missable and only
+          show transactions that have been missed in at least three blocks. In other words, we
+          accept many false negatives in order to have a low false positive rate. In even other
+          words, monitor is quite lenient.
+        </p>
+
+        <p>
+          Of course, there is always the possibility of a bug. If you find something suspicious,
+          please let us know by opening an issue in our <a
+            href="https://github.com/ethereum-censorship-monitor/ethereum-censorship-monitor"
+            >Github repository</a
+          >.
+        </p>
+      </div>
+    </FAQEntry>
+    <FAQEntry>
       <span slot="question">Is Ethereum censored?</span>
       <div slot="answer">
         <p>
