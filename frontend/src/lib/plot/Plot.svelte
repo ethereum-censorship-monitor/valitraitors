@@ -2,13 +2,10 @@
   import PlotLine from './PlotLine.svelte';
   import Tooltip from './Tooltip.svelte';
 
-  import { onMount } from 'svelte';
-
   export let t0 = 0;
   export let t1 = 0;
   export let txs = [];
 
-  let svgElement;
   let width = 0;
 
   const timePerLine = 24 * 60 * 60;
@@ -81,17 +78,6 @@
   $: showToolTip = toolTipPosition !== null;
   let toolTipOffset = 50;
 
-  onMount(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      const entry = entries[0];
-      width = entry.contentRect.width;
-    });
-
-    resizeObserver.observe(svgElement);
-
-    return () => resizeObserver.unobserve(svgElement);
-  });
-
   function timestampToLineAndX(t) {
     if (t < t0 || t > t1) {
       return null;
@@ -136,7 +122,13 @@
 </script>
 
 <div class="relative">
-  <svg class="w-full h-auto overflow-visible" viewBox="0 0 {width} {height}" bind:this={svgElement}>
+  <div class="w-full h-0" bind:clientWidth={width} />
+  <svg
+    class="w-full overflow-visible"
+    style="height: {height}px"
+    viewBox="0 0 {width} {height}"
+    preserveAspectRatio="xMidYMin"
+  >
     <g transform="translate({marginLeft}, {marginTop})">
       {#each Array(numLines) as _, i}
         <g transform="translate(0, {i * (lineHeight + lineSpacing)})">
