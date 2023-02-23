@@ -127,7 +127,7 @@
     class="w-full overflow-visible"
     style="height: {height}px"
     viewBox="0 0 {width} {height}"
-    preserveAspectRatio="xMidYMin"
+    preserveAspectRatio="none"
   >
     <g transform="translate({marginLeft}, {marginTop})">
       {#each Array(numLines) as _, i}
