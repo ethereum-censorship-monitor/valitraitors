@@ -26,7 +26,7 @@
 <div class="mx-auto max-w-screen-sm text-justify">
   <p class="text-white mx-4 mb-8">
     Validators and by extensions pools are ultimately responsible for transaction selection. Many
-    however choose to delegate this duty to builders. <sup>1</sup>
+    however choose to delegate this duty to builders.
   </p>
 </div>
 <Table heads={['Pool', 'Market Share', 'Misses', 'Weighted Misses']} defaultSortColumn={2} {rows} />
