@@ -5,7 +5,6 @@
 
   onMount(() => {
     isSafari = window.navigator.userAgent.indexOf('Safari') != -1;
-    console.log(isSafari);
   });
 </script>
 
