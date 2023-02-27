@@ -116,7 +116,7 @@
         <p>
           If you're an entity involved in block production, be it a validator, relay, or builder,
           don't censor transactions. In addition, consider refusing to cooperate with other entities
-          that do. For instance, as a validator, only whitelist non-censoring relays. As a relay,
+          that do. For instance, as a validator, only allowlist non-censoring relays. As a relay,
           reject blocks from builders that are known to censor. As a user, leave staking pools that
           are not committed to censorship resistance or pressure them to change their stance.
         </p>

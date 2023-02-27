@@ -24,8 +24,8 @@
 
 <div class="mx-auto max-w-screen-sm">
   <p class="text-white mx-4 mb-8">
-    Relays do not engage in transaction selection directly, but they can filter blocks from builders
-    with unwanted transactions.
+    Relays do not engage in transaction selection directly. However, if a builder proposes a block
+    that includes an unwanted transaction, the relay can reject that whole block.
   </p>
 </div>
 <Table

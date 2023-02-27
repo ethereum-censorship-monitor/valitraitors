@@ -1,9 +1,10 @@
 <div class="max-w-screen-sm mx-auto">
   <p class="text-justify mx-4 text-white mb-4">
-    Ethereum is neutral and permissionless infrastructure. We recruited validators to produce blocks
-    and fill them with our transactions. However, some of them decide to censor particular
-    transactions. As they violate one of the core tenets of our community, we call them
-    valitraitors. This website looks for evidence of this behavior and makes it available for
-    everyone to see.
+    The core promise of Ethereum is to be neutral and permissionless infrastructure. To live up to
+    this dream, it relies on the validators it recruited to treat all transactions equally when
+    building blocks. However, recently some validators have been censoring certain transactions.
+    This violates one of the core tenets of our community. We therefore call them valitraitors. Our
+    website looks for evidence of such unacceptable behavior and makes it available for everyone to
+    see.
   </p>
 </div>

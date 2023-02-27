@@ -24,8 +24,8 @@
 
 <div class="mx-auto max-w-screen-sm">
   <p class="text-white mx-4 mb-8">
-    Builders draft blocks for validators and choose directly which transactions to include and which
-    ones not to.
+    Builders draft blocks for validators and directly choose which transactions to include or
+    exclude.
   </p>
 </div>
 <Table
