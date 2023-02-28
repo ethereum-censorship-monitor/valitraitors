@@ -54,11 +54,11 @@ def main():
     )
     misses_by_validator_index = count_misses_by_validator_index(txs, blocks)
     misses_by_operator = aggregate_misses_by_operator(
-        misses_by_validator_index, validator_pubkeys, operators
+        misses_by_validator_index, validator_pubkeys, operator_names, operators
     )
 
     operator_market_shares = compute_operator_market_shares(
-        blocks, validator_pubkeys, operators
+        blocks, validator_pubkeys, operator_names, operators
     )
     operator_leaderboard = create_operator_leaderboard(
         config,
@@ -134,7 +134,7 @@ def count_misses_by_validator_index(txs, blocks):
 
 
 def aggregate_misses_by_operator(
-    misses_by_validator_index, validator_pubkeys, operators
+    misses_by_validator_index, validator_pubkeys, operator_names, operators
 ):
     misses_by_operator = {}
     for validator_index, count in misses_by_validator_index.items():
@@ -146,13 +146,15 @@ def aggregate_misses_by_operator(
             misses_by_operator[operator_name] = (
                 misses_by_operator.get(operator_name, 0) + count
             )
-    for operator_name in operators.values():
+    for operator_name in operator_names.values():
         if operator_name not in misses_by_operator:
             misses_by_operator[operator_name] = 0
     return misses_by_operator
 
 
-def compute_operator_market_shares(blocks, validator_pubkeys, operators):
+def compute_operator_market_shares(
+    blocks, validator_pubkeys, operator_names, operators
+):
     blocks_by_operator = {}
     num_missed = 0
     for block in blocks:
@@ -164,6 +166,10 @@ def compute_operator_market_shares(blocks, validator_pubkeys, operators):
             continue
         operator = operators[proposer_index]
         blocks_by_operator[operator] = blocks_by_operator.get(operator, 0) + 1
+
+    for operator_name in operator_names.values():
+        if operator_name not in blocks_by_operator:
+            blocks_by_operator[operator_name] = 0
 
     shares = {
         operator: num_blocks / (len(blocks) - num_missed)
