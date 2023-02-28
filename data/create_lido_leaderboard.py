@@ -146,6 +146,9 @@ def aggregate_misses_by_operator(
             misses_by_operator[operator_name] = (
                 misses_by_operator.get(operator_name, 0) + count
             )
+    for operator_name in operators.values():
+        if operator_name not in misses_by_operator:
+            misses_by_operator[operator_name] = 0
     return misses_by_operator
 
 
