@@ -77,6 +77,19 @@
       </div>
     </FAQEntry>
     <FAQEntry>
+      <span slot="question">What are "weighted misses"?</span>
+      <div slot="answer">
+        <p>
+          Entities which produce more blocks will in general have more misses even if they follow
+          the exact transaction inclusion rules as a smaller entity. To account for this, the
+          various leaderboards have a column "weighted misses" which is the number of misses divided
+          by the market share in percentage points. For instance, if there is one entity with a 60%
+          market share and 50 misses next to another with only 10% market share but 20 misses, the
+          second one would lead in the weighted misses category by 2.0 to 1.2.
+        </p>
+      </div>
+    </FAQEntry>
+    <FAQEntry>
       <span slot="question">How accurate is the data?</span>
       <div slot="answer">
         <p>
