@@ -189,7 +189,7 @@ def create_operator_leaderboard(
                 "operator": operator,
                 "num_misses": count,
                 "market_share": share,
-                "weighted_num_misses": count / share / 100,
+                "weighted_num_misses": count / share / 100 if share > 0 else 0,
             }
         )
     leaderboard = sorted(leaderboard_unordered, key=lambda r: -r["num_misses"])
