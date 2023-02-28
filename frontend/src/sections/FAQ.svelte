@@ -80,8 +80,8 @@
       <span slot="question">What are "weighted misses"?</span>
       <div slot="answer">
         <p>
-          Entities which produce more blocks will in general have more misses even if they follow
-          the exact transaction inclusion rules as a smaller entity. To account for this, the
+          Entities that produce more blocks will naturally produce more misses even if they follow
+          the exact same transaction inclusion rules as a smaller entity. To account for this, the
           various leaderboards have a column "weighted misses" which is the number of misses divided
           by the market share in percentage points. For instance, if there is one entity with a 60%
           market share and 50 misses next to another with only 10% market share but 20 misses, the
@@ -96,9 +96,9 @@
           The mempool is by its nature subjective: Different nodes in the network see different
           transactions. It's therefore possible that the monitor classifies a not-included
           transaction as a miss, even though the block producer hasn't seen it. To account for this,
-          we give transactions ample time to propagate before considering them as missable and only
-          show transactions that have been missed in at least three blocks. In other words, we
-          accept many false negatives in order to have a low false positive rate. In even other
+          we give transactions ample time to propagate (>12s) before considering them as missable
+          and only show transactions that have been missed in at least three blocks. In other words,
+          we accept many false negatives in order to have a low false positive rate. In even other
           words, monitor is quite lenient.
         </p>
 
